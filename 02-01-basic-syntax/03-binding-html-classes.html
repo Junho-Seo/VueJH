@@ -1,0 +1,68 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <style>
+    .active {
+      color: crimson;
+    }
+
+    .text-primary {
+      color: blue;
+    }
+  </style>
+</head>
+
+<body>
+  <div id="app">
+
+    <!-- Binding to Objects -->
+    <!--[참고, 복습] JS에서는 객체의 키값이 문자열이 아니어도 된다(써도 됨) -->
+    <!-- 하이픈이 있는 경우는 문자열 처리 필수 -->
+    <div :class="{ active: isActive }">Text</div>
+    <!-- 객체를 활용하여 여러 개의 속성값 넣기 -->
+    <div class="static" :class="{active: isActive, 'text-primary': hasInfo }">Text</div>
+    <!-- 반드시 인라인 방식으로 작성할 필요는 없다. 반응형 객체 작성하여 활용 가능 -->
+    <!-- 위와 동일 코드 -->
+    <div class="static" :class="classObj">Text</div>
+
+    <!-- Binding to Arrays -->
+    <!-- class를 배열에 바인딩 -->
+    <div :class="[activeClass, infoClass]">Text</div>
+    <!-- 배열 구문 내에서 객체 구문 사용 가능 -->
+    <div :class="[{active: isActive}, infoClass]">Text</div>
+
+  </div>
+
+  <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+  <script>
+    const { createApp, ref } = Vue
+
+    const app = createApp({
+      setup() {
+        const isActive = ref(true)
+        const hasInfo = ref(true)
+        const classObj = ref({
+          active: isActive,
+          'text-primary': hasInfo
+        })
+        const activeClass = ref('active')
+        const infoClass = ref('text-primary')
+        return {
+          isActive,
+          hasInfo,
+          classObj,
+          activeClass,
+          infoClass,
+        }
+      }
+    })
+
+    app.mount('#app')
+  </script>
+</body>
+
+</html>
