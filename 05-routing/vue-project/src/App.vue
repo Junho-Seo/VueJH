@@ -17,6 +17,7 @@ const userId = ref(1)
         <RouterLink :to="{ name:'home' }">Home</RouterLink>
         <RouterLink :to="{ name:'about' }">About</RouterLink>
         <RouterLink :to="{ name: 'user', params: { id: userId } }">User</RouterLink>
+        <RouterLink :to="{ name:'login' }">login</RouterLink>
       </nav>
     </div>
   </header>
